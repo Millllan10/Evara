@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evara | Where Luxury Finds You</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5EFE6;
+      --cream-mid: #EDE5D8;
+      --cream-dark: #E3D8C8;
+      --maroon: #7B1C2E;
+      --maroon-deep: #5C1221;
+      --maroon-lite: #9B2438;
+      --gold: #C09A50;
+      --dark: #1A1210;
+      --charcoal: #2D2420;
+      --muted: #6B5F58;
+      --white: #FFFFFF;
+      --off-white: #FAF7F3;
+      --line: rgba(123, 28, 46, 0.15);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--maroon);
+      border-radius: 2px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      transition: all .35s ease;
+    }
+
+    .nav.stuck {
+      padding: 14px 64px;
+      background: rgba(245, 239, 230, .97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(26, 18, 8, .06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-crest {
+      width: 38px;
+      height: 38px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .3s;
+    }
+
+    .nav-logo-crest svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--white);
+      transition: fill .3s;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-logo-text span:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 3px;
+      line-height: 1;
+      transition: color .3s;
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-top: 2px;
+      transition: color .3s;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--maroon);
+    }
+
+    .nav-cta {
+      background: var(--maroon) !important;
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--maroon-deep) !important;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      width: 26px;
+      height: 1.5px;
+      background: var(--white);
+      transition: all .3s;
+      display: block;
+    }
+
+    .logo-dark {
+      display: none;
+    }
+
+    .nav.stuck .logo-light {
+      display: none;
+    }
+
+    .nav.stuck .logo-dark {
+      display: block;
+    }
+
+    .nav.stuck .nav-links a {
+      color: var(--charcoal);
+    }
+
+    .nav.stuck .nav-links a:hover {
+      color: var(--maroon);
+    }
+
+    .nav.stuck .nav-hamburger span {
+      background: var(--charcoal);
+    }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 998;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    .nav-mobile a {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--charcoal);
+    }
+
+    .nav-mobile a:hover {
+      color: var(--maroon);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      padding: 20vh 64px 0;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(10, 5, 2, .08) 0%, rgba(10, 5, 2, .45) 55%, rgba(10, 5, 2, .82) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      font-size: 14px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-title {
+      font-size: clamp(50px, 6.5vw, 96px);
+      color: var(--white);
+      margin-bottom: 22px;
+      font-weight: 400;
+      line-height: 1.02;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 44px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .hero-stat {
+      border-left: 1px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    .hero-stat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-stat .l {
+      font-size: 10px;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--maroon);
+      color: var(--white);
+      padding: 14px 34px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--maroon-deep);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-light {
+      border: 1px solid rgba(255, 255, 255, .55);
+      color: var(--white);
+      padding: 13px 34px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      right: 64px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-scroll span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, .5), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    @keyframes scrollPulse {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    /* ── COMMON SECTION ── */
+    .section {
+      padding: 100px 64px;
+    }
+
+    .s-eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--maroon);
+      border: 1px solid var(--maroon);
+      padding: 6px 14px;
+      display: inline-block;
+      margin-bottom: 22px;
+    }
+
+    .s-title {
+      font-size: clamp(30px, 3.4vw, 52px);
+      margin-bottom: 16px;
+    }
+
+    .s-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .fade-in.vis {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in.d1 {
+      transition-delay: .12s;
+    }
+
+    .fade-in.d2 {
+      transition-delay: .24s;
+    }
+
+    .fade-in.d3 {
+      transition-delay: .36s;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .about-img-grid .big {
+      grid-column: 1/-1;
+    }
+
+    .about-img-grid figure {
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .about-img-grid figure img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform .7s ease;
+    }
+
+    .about-img-grid .big img {
+      height: 340px;
+    }
+
+    .about-img-grid figure:hover img {
+      transform: scale(1.04);
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .af {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .af-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .af b {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .af span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .about-text p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    /* ── AMENITIES ── */
+    .amenities {
+      background: var(--cream);
+    }
+
+    .amenities-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .amenities-head .s-sub {
+      margin: 0 auto;
+    }
+
+    .tab-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 44px;
+    }
+
+    .tabs {
+      border: 1px solid var(--maroon);
+      display: inline-flex;
+      border-radius: 1px;
+    }
+
+    .tab-btn {
+      padding: 12px 44px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: var(--maroon);
+      transition: all .3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab-btn.on {
+      background: var(--maroon);
+      color: var(--white);
+    }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .am-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .am-card.wide {
+      grid-column: span 2;
+    }
+
+    .am-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform .55s ease;
+    }
+
+    .am-card.wide img {
+      height: 220px;
+    }
+
+    .am-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .am-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 5, 2, .72) 0%, transparent 55%);
+      display: flex;
+      align-items: flex-end;
+      padding: 18px 20px;
+    }
+
+    .am-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    .am-pane {
+      display: none;
+    }
+
+    .am-pane.show {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+
+    .gallery-head {
+      text-align: center;
+      padding: 0 64px 52px;
+    }
+
+    .gallery-head .s-sub {
+      margin: 0 auto;
+    }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 260px;
+      gap: 4px;
+      padding: 0 4px;
+    }
+
+    .gal-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .65s ease;
+    }
+
+    .gal-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gal-item:nth-child(1) {
+      grid-column: span 5;
+    }
+
+    .gal-item:nth-child(2) {
+      grid-column: span 4;
+    }
+
+    .gal-item:nth-child(3) {
+      grid-column: span 3;
+    }
+
+    .gal-item:nth-child(4) {
+      grid-column: span 3;
+    }
+
+    .gal-item:nth-child(5) {
+      grid-column: span 4;
+    }
+
+    .gal-item:nth-child(6) {
+      grid-column: span 5;
+    }
+
+    .gal-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 18px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .6));
+      color: var(--white);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity .35s;
+    }
+
+    .gal-item:hover .gal-caption {
+      opacity: 1;
+    }
+
+    /* ── FLOOR PLANS ── */
+    .floor-plans {
+      background: var(--white);
+    }
+
+    .fp-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .fp-head .s-sub {
+      margin: 0 auto;
+    }
+
+    .fp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .fp-card {
+      border: 1px solid var(--cream-dark);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: box-shadow .35s, transform .35s;
+    }
+
+    .fp-card:hover {
+      box-shadow: 0 24px 48px rgba(26, 18, 8, .1);
+      transform: translateY(-4px);
+    }
+
+    .fp-img {
+      height: 320px;
+      overflow: hidden;
+      background: #fff;
+      padding: 16px;
+    }
+
+    .fp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform .6s;
+    }
+
+    .fp-card:hover .fp-img img {
+      transform: scale(1.05);
+    }
+
+    .fp-body {
+      padding: 26px;
+    }
+
+    .fp-type {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    .fp-name {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .fp-specs {
+      display: flex;
+      gap: 24px;
+    }
+
+    .fp-spec strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .fp-spec span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── WALKTHROUGH ── */
+    .walkthrough {
+      background: var(--maroon-deep);
+      padding: 100px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wt-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .wt-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .18;
+    }
+
+    .wt-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .wt-eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .wt-title {
+      font-size: clamp(32px, 3.5vw, 56px);
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .wt-sub {
+      font-size: 15px;
+      color: rgba(255, 255, 255, .65);
+      max-width: 480px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
+    }
+
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      border: 2px solid rgba(255, 255, 255, .55);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .3s;
+      margin-bottom: 24px;
+    }
+
+    .play-btn:hover {
+      background: rgba(255, 255, 255, .12);
+      border-color: var(--white);
+    }
+
+    .play-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--white);
+      margin-left: 4px;
+    }
+
+    /* ── CONNECTIVITY ── */
+    .connectivity {
+      background: var(--cream-mid);
+    }
+
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .map-box {
+      border-radius: 3px;
+      overflow: hidden;
+      height: 480px;
+      box-shadow: 0 20px 48px rgba(26, 18, 8, .1);
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .connect-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .connect-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--white);
+      padding: 18px 22px;
+      border-radius: 2px;
+      border-left: 3px solid var(--maroon);
+      transition: transform .3s;
+    }
+
+    .connect-item:hover {
+      transform: translateX(6px);
+    }
+
+    .ci-icon {
+      font-size: 22px;
+      min-width: 38px;
+      text-align: center;
+    }
+
+    .ci-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 2px;
+    }
+
+    .ci-text span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .ci-dist {
+      margin-left: auto;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--maroon);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      background: var(--cream);
+    }
+
+    .faq-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .faq-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 20px;
+    }
+
+    .faq-q p {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .faq-icon {
+      min-width: 26px;
+      height: 26px;
+      border: 1px solid var(--maroon);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--maroon);
+      font-size: 16px;
+      transition: all .3s;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--maroon);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease, padding .3s;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+      padding: 0 26px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 26px 22px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--maroon);
+      padding: 100px 64px;
+      text-align: center;
+    }
+
+    .ct-eyebrow {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      margin-bottom: 18px;
+    }
+
+    .ct-title {
+      font-size: clamp(34px, 4vw, 62px);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .ct-sub {
+      font-size: 15px;
+      color: rgba(255, 255, 255, .65);
+      max-width: 480px;
+      margin: 0 auto 52px;
+      line-height: 1.7;
+    }
+
+    .ct-info {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+
+    .ct-item {
+      text-align: center;
+    }
+
+    .ct-lbl {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .45);
+      margin-bottom: 8px;
+    }
+
+    .ct-val {
+      font-size: 17px;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .ct-btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--maroon);
+      padding: 14px 38px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .2);
+    }
+
+    .btn-ghost-white {
+      border: 1px solid rgba(255, 255, 255, .45);
+      color: var(--white);
+      padding: 13px 38px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all .3s;
+    }
+
+    .btn-ghost-white:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #100A07;
+      color: rgba(255, 255, 255, .6);
+      padding: 80px 64px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .f-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--white);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .f-desc {
+      font-size: 12.5px;
+      line-height: 1.9;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+
+    .f-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-soc-link {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .55);
+      transition: all .3s;
+    }
+
+    .f-soc-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .f-heading {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 22px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .f-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .f-links a {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, .55);
+      transition: color .3s;
+    }
+
+    .f-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ── RERA STRIP ── */
+    .rera-strip {
+      background: #0A0604;
+      padding: 44px 64px;
+    }
+
+    .rera-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .rera-info {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .rera-lbl {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .rera-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .rera-note {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .qr-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .qr-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qr-card .qr-img {
+      width: 100px;
+      height: 100px;
+      background: var(--white);
+      border-radius: 4px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .qr-card .qr-img img {
+      width: 90px;
+      height: 90px;
+    }
+
+    .qr-card .qr-lbl {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      text-align: center;
+    }
+
+    /* ── DEVELOPER LOGOS ── */
+    .dev-strip {
+      background: #0D0806;
+      padding: 36px 64px;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .dev-inner {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .dev-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-right: 8px;
+    }
+
+    .dev-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 12px 22px;
+      border-radius: 2px;
+    }
+
+    .dev-logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    .dev-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dev-logo-text strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: rgba(255, 255, 255, .85);
+      letter-spacing: 1.5px;
+      line-height: 1;
+    }
+
+    .dev-logo-text span {
+      font-size: 8px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-top: 3px;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: #080503;
+      padding: 36px 64px 28px;
+    }
+
+    .dis-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: 12px;
+    }
+
+    .dis-text {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, .28);
+      line-height: 1.9;
+      text-align: justify;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 64px;
+      background: #050302;
+      font-size: 11px;
+      color: rgba(255, 255, 255, .3);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, .3);
+      transition: color .3s;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 32px;
+      color: rgba(255, 255, 255, .7);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: color .3s;
+    }
+
+    .lb-close:hover {
+      color: var(--white);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px) {
+      .nav {
+        padding: 20px 36px;
+      }
+
+      .nav.stuck {
+        padding: 12px 36px;
+      }
+
+      .section {
+        padding: 80px 36px;
+      }
+
+      .hero {
+        padding: 28vh 36px 0;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .connect-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .fp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .gal-grid {
+        grid-auto-rows: 200px;
+      }
+
+      .walkthrough {
+        padding: 80px 36px;
+      }
+
+      .contact {
+        padding: 80px 36px;
+      }
+
+      .rera-strip {
+        padding: 36px;
+      }
+
+      .dev-strip {
+        padding: 28px 36px;
+      }
+
+      .disclaimer {
+        padding: 28px 36px;
+      }
+
+      .footer-bottom {
+        padding: 18px 36px;
+      }
+
+      .footer {
+        padding: 60px 36px 0;
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav {
+        padding: 16px 20px;
+      }
+
+      .nav.stuck {
+        padding: 12px 20px;
+      }
+
+      .hero {
+        padding: 20vh 20px 0;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .amenity-grid,
+      .am-pane.show {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .am-card.wide {
+        grid-column: span 2;
+      }
+
+      .faq-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .gal-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 180px;
+      }
+
+      .gal-item {
+        grid-column: span 1 !important;
+      }
+
+      .fp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rera-inner {
+        flex-direction: column;
+      }
+
+      .qr-row {
+        gap: 20px;
+      }
+
+      .dev-inner {
+        gap: 16px;
+      }
+
+      .ct-info {
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ NAVIGATION ══ -->
+  <nav class="nav" id="nav">
+    <a href="#home" class="nav-logo">
+      <img src="images/logo.png" alt="Evara Virar West" class="logo-light" style="height: 80px; width: auto;">
+      <img src="images/logo2.png" alt="Evara Virar West" class="logo-dark" style="height: 48px; width: auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#floor-plans">Floor Plans</a></li>
+      <li><a href="#walkthrough">Walkthrough</a></li>
+      <li><a href="#connectivity">Connectivity</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 10v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"></path>
+            <path d="M4 10h16v-2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2z"></path>
+            <path d="M9 10h6"></path>
+            <path d="M15 18l-1.5-3a1.5 1.5 0 0 0-3 0L9 18"></path>
+          </svg>
+          Experience Evara</a></li>
+    </ul>
+    <button class="nav-hamburger" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#home" onclick="closeMob()">Home</a>
+    <a href="#about" onclick="closeMob()">About Us</a>
+    <a href="#amenities" onclick="closeMob()">Amenities</a>
+    <a href="#gallery" onclick="closeMob()">Gallery</a>
+    <a href="#floor-plans" onclick="closeMob()">Floor Plans</a>
+    <a href="#connectivity" onclick="closeMob()">Connectivity</a>
+    <a href="#contact" onclick="closeMob()">Contact Us</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="home">
+    <div class="hero-media">
+      <img src="images/main.png" alt="Evara Virar West">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Live Evara · Live Luxe</p>
+      <h1 class="hero-title">Redefining<br>Luxury Living</h1>
+      <p class="hero-desc">Evara Virar West presents 2, 3 &amp; 4 BHK Sky Deck Residences in Global City — where
+        spacious homes, curated amenities, and seamless connectivity meet.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="n">40+</div>
+          <div class="l">Modern Amenities</div>
+        </div>
+        <div class="hero-stat">
+          <div class="n">7 Min</div>
+          <div class="l">Virar Railway Station</div>
+        </div>
+        <div class="hero-stat">
+          <div class="n">3 Level</div>
+          <div class="l">Podium Amenities</div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+          </svg>
+          Book a Site Visit
+        </a>
+        <a href="#" class="btn-outline-light">Download Brochure</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="section about" id="about">
+    <div class="about-text fade-in">
+      <div class="s-eyebrow">About Us</div>
+      <h2 class="s-title">Redefining Modern Elegance,<br>One Home at a Time</h2>
+      <p>Designed for comfort and contemporary living, Evara Virar West delivers excellent ventilation, natural light,
+        and absolute privacy in every residence — elevated by podium and rooftop amenities including landscaped gardens,
+        fitness zones, and vibrant recreation spaces.</p>
+      <p>Located close to schools, hospitals, shopping hubs, and Western Railway connectivity, Evara offers the perfect
+        balance of urban convenience and peaceful living — making it an ideal choice for homebuyers and investors alike.
+      </p>
+      <div class="about-features">
+        <div class="af">
+          <div class="af-icon">🌿</div>
+          <div><b>Landscaped Gardens</b><span>Lush green spaces to unwind in</span></div>
+        </div>
+        <div class="af">
+          <div class="af-icon">🏋️</div>
+          <div><b>Fitness Zones</b><span>State-of-the-art equipment</span></div>
+        </div>
+        <div class="af">
+          <div class="af-icon">🚗</div>
+          <div><b>Podium Parking</b><span>Dedicated covered parking spaces</span></div>
+        </div>
+        <div class="af">
+          <div class="af-icon">🌆</div>
+          <div><b>Sky Deck Views</b><span>Panoramic vistas from the rooftop</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-grid fade-in d1">
+      <figure class="big">
+        <img src="images/livingRoom.png" alt="Luxury Interior Living Room">
+      </figure>
+      <figure>
+        <img src="images/kitchen.png" alt="Modern Kitchen">
+      </figure>
+      <figure>
+        <img src="images/bedroom.png" alt="Master Bedroom">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ AMENITIES ══ -->
+  <section class="section amenities" id="amenities">
+    <div class="amenities-head fade-in">
+      <div class="s-eyebrow">Amenities</div>
+      <h2 class="s-title">Designed with Purpose,<br>Defined by Luxury</h2>
+      <p class="s-sub">A podium and rooftop crafted for pauses, play and purpose — over 40 curated amenities across
+        three levels.</p>
+    </div>
+    <div class="tab-wrap fade-in d1">
+      <div class="tabs">
+        <button class="tab-btn on" onclick="switchTab('podium',this)" id="tab-podium">Podium Amenities</button>
+        <button class="tab-btn" onclick="switchTab('rooftop',this)" id="tab-rooftop">Rooftop Amenities</button>
+      </div>
+    </div>
+
+    <!-- PODIUM -->
+    <div class="am-pane show fade-in d2" id="pane-podium">
+      <div class="am-card wide">
+        <img src="images/golfCourse.png" alt="Mini Golf Course">
+        <div class="am-overlay"><span class="am-name">Mini Golf Course</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/fitnessCentre.png" alt="Fitness Centre">
+        <div class="am-overlay"><span class="am-name">Fitness Centre</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/coveredParking.png" alt="Covered Parking">
+        <div class="am-overlay"><span class="am-name">Covered Parking</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/kidsPlayArea.png" alt="Kids Play Area">
+        <div class="am-overlay"><span class="am-name">Kids Play Area</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/loungeSeating.jpeg" alt="Lounge Seating">
+        <div class="am-overlay"><span class="am-name">Lounge Seating</span></div>
+      </div>
+      <div class="am-card wide">
+        <img src="images/landscapeGarden.png" alt="Landscaped Garden">
+        <div class="am-overlay"><span class="am-name">Landscaped Garden</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/joggingTrack.png" alt="Jogging Track">
+        <div class="am-overlay"><span class="am-name">Jogging Track</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/squash.png" alt="Squash Court">
+        <div class="am-overlay"><span class="am-name">Squash Court</span></div>
+      </div>
+    </div>
+
+    <!-- ROOFTOP -->
+    <div class="am-pane fade-in d2" id="pane-rooftop">
+      <div class="am-card wide">
+        <img src="images/skyLounge.jpeg" alt="Sky Lounge">
+        <div class="am-overlay"><span class="am-name">Sky Lounge</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/skyGarden.jpeg" alt="Sky Garden">
+        <div class="am-overlay"><span class="am-name">Rooftop Sky Garden</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/partyTerrace.jpeg" alt="Party Terrace">
+        <div class="am-overlay"><span class="am-name">Party Terrace</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/meditationZone.jpeg" alt="Meditation Zone">
+        <div class="am-overlay"><span class="am-name">Meditation Zone</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/stargazingDeck.png" alt="Stargazing Deck">
+        <div class="am-overlay"><span class="am-name">Stargazing Deck</span></div>
+      </div>
+      <div class="am-card wide">
+        <img src="images/infinityDeck.jpeg" alt="Infinity View Deck">
+        <div class="am-overlay"><span class="am-name">Infinity View Deck</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/barbequeArea.jpeg" alt="BBQ Area">
+        <div class="am-overlay"><span class="am-name">Barbeque Corner</span></div>
+      </div>
+      <div class="am-card">
+        <img src="images/yogaDeck.jpeg" alt="Yoga Deck">
+        <div class="am-overlay"><span class="am-name">Yoga Deck</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GALLERY ══ -->
+  <section id="gallery" class="gallery">
+    <div class="gallery-head fade-in">
+      <div class="s-eyebrow">Gallery</div>
+      <h2 class="s-title">A Glimpse into Evara</h2>
+      <p class="s-sub">Every corner tells a story of elegance — crafted to elevate the everyday.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/livingRoom.png" alt="Living Room">
+        <div class="gal-caption">Living Room</div>
+      </div>
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/bedroom.png" alt="Master Bedroom">
+        <div class="gal-caption">Master Bedroom</div>
+      </div>
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/kitchen.png" alt="Kitchen">
+        <div class="gal-caption">Kitchen</div>
+      </div>
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/bathroom.png" alt="Bathroom">
+        <div class="gal-caption">Bathroom</div>
+      </div>
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/balcony.jpeg" alt="Balcony">
+        <div class="gal-caption">Balcony</div>
+      </div>
+      <div class="gal-item" onclick="openLB(this)">
+        <img src="images/lounge.jpeg" alt="lobby">
+        <div class="gal-caption">Lobby</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLB()">
+    <button class="lb-close" onclick="closeLB()">×</button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+  </div>
+
+  <!-- ══ FLOOR PLANS ══ -->
+  <section class="section floor-plans" id="floor-plans">
+    <div class="fp-head fade-in">
+      <div class="s-eyebrow">Floor Plans</div>
+      <h2 class="s-title">Spaces Crafted for Living</h2>
+      <p class="s-sub">Thoughtfully configured 2, 3 &amp; 4 BHK Sky Deck Residences with larger carpet areas and modern
+        architecture.</p>
+    </div>
+    <div class="fp-grid fade-in d1">
+      <div class="fp-card">
+        <div class="fp-img">
+          <img src="images/2bhk.jpeg" alt="2 BHK Floor Plan">
+        </div>
+        <div class="fp-body">
+          <div class="fp-type">Sky Deck Residence</div>
+          <h3 class="fp-name">2 BHK</h3>
+          <div class="fp-specs">
+            <div class="fp-spec"><strong>~650–760</strong><span>Carpet Area (sq.ft.)</span></div>
+            <div class="fp-spec"><strong>2</strong><span>Bathrooms</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-img">
+          <img src="images/3bhk.jpeg" alt="3 BHK Floor Plan">
+        </div>
+        <div class="fp-body">
+          <div class="fp-type">Sky Deck Residence</div>
+          <h3 class="fp-name">3 BHK</h3>
+          <div class="fp-specs">
+            <div class="fp-spec"><strong>~950–1080</strong><span>Carpet Area (sq.ft.)</span></div>
+            <div class="fp-spec"><strong>3</strong><span>Bathrooms</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-img">
+          <img src="images/4bhk.jpeg" alt="4 BHK Floor Plan">
+        </div>
+        <div class="fp-body">
+          <div class="fp-type">Sky Deck Residence</div>
+          <h3 class="fp-name">4 BHK</h3>
+          <div class="fp-specs">
+            <div class="fp-spec"><strong>~1400–1620</strong><span>Carpet Area (sq.ft.)</span></div>
+            <div class="fp-spec"><strong>4</strong><span>Bathrooms</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WALKTHROUGH ══ -->
+  <section class="walkthrough" id="walkthrough">
+    <div class="wt-bg">
+      <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1920&q=60" alt="">
+    </div>
+    <div class="wt-content fade-in">
+      <p class="wt-eyebrow">Virtual Walkthrough</p>
+      <h2 class="wt-title">Step Inside Your Future Home</h2>
+      <p class="wt-sub">Experience every corner of Evara Virar West from wherever you are — a fully immersive virtual
+        tour of our Sky Deck Residences.</p>
+      <div class="play-btn" onclick="alert('Virtual tour link will be added here')">
+        <svg viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+      <br>
+      <a href="tel:+919922451451" class="btn-white" style="margin-top:16px;display:inline-block;">Schedule a Personal
+        Tour</a>
+    </div>
+  </section>
+
+  <!-- ══ CONNECTIVITY ══ -->
+  <section class="section connectivity" id="connectivity">
+    <div class="fade-in">
+      <div class="s-eyebrow">Connectivity</div>
+      <h2 class="s-title">Perfectly Placed,<br>Seamlessly Connected</h2>
+      <p class="s-sub">Evara Virar West sits at the heart of Global City — every essential within reach, every
+        destination within minutes.</p>
+    </div>
+    <div class="connect-grid fade-in d1">
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.791758146435!2d72.80349467521516!3d19.46454313182171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a9df269d0cf7%3A0x1ad76831467670a7!2sNeminath%20-%20Evara!5e0!3m2!1sen!2sin!4v1781588330636!5m2!1sen!2sin"
+          width="736.5" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="connect-list">
+        <div class="connect-item">
+          <div class="ci-icon">🚂</div>
+          <div class="ci-text"><strong>Virar Railway Station</strong><span>Western Line — direct to Mumbai CST</span>
+          </div>
+          <div class="ci-dist">7 Min</div>
+        </div>
+        <div class="connect-item">
+          <div class="ci-icon">🛣️</div>
+          <div class="ci-text"><strong>National Highway NH-48</strong><span>Expressway for intercity travel</span></div>
+          <div class="ci-dist">5 Min</div>
+        </div>
+        <div class="connect-item">
+          <div class="ci-icon">🍔</div>
+          <div class="ci-text"><strong>McDonald's & Commercial Hub</strong><span>Directly opposite the project</span>
+          </div>
+          <div class="ci-dist">1 Min</div>
+        </div>
+        <div class="connect-item">
+          <div class="ci-icon">🏫</div>
+          <div class="ci-text"><strong>Reputed Schools & Colleges</strong><span>Education campuses nearby</span></div>
+          <div class="ci-dist">5 Min</div>
+        </div>
+        <div class="connect-item">
+          <div class="ci-icon">🏥</div>
+          <div class="ci-text"><strong>Hospitals & Healthcare</strong><span>Leading multispeciality facilities</span>
+          </div>
+          <div class="ci-dist">10 Min</div>
+        </div>
+        <div class="connect-item">
+          <div class="ci-icon">🛍️</div>
+          <div class="ci-text"><strong>Malls & Shopping Centres</strong><span>Retail, dining, entertainment</span></div>
+          <div class="ci-dist">8 Min</div>
+        </div>
+        <!-- <div class="connect-item">
+          <div class="ci-icon">✈️</div>
+          <div class="ci-text"><strong>Navi Mumbai Int'l Airport</strong><span>Future airport — rising investment</span>
+          </div>
+          <div class="ci-dist">~45 Min</div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section class="section faq" id="faq">
+    <div class="faq-head fade-in">
+      <div class="s-eyebrow">FAQ</div>
+      <h2 class="s-title">Your Questions,<br>Elegantly Answered</h2>
+    </div>
+    <div class="faq-wrap fade-in d1">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>What makes your properties truly luxury?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Evara Virar West offers thoughtfully designed 2, 3 &amp; 4 BHK Sky Deck Residences with
+          spacious layouts, larger carpet areas, modern architecture, premium finishes, and over 40 curated amenities
+          across podium and rooftop levels.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>What locations do you currently develop in?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Evara Virar West is located at Global City, opposite McDonald's, Dongarpada, Virar West — a
+          premier residential destination offering excellent connectivity to Mumbai and beyond via the Western Railway
+          line.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>Are your properties customizable to my preferences?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Our homes are designed with thoughtful layouts and premium materials. Our sales team can walk
+          you through available configuration options and assist with personalising your home to suit your lifestyle
+          needs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>Can I schedule a sample flat visit?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Yes, absolutely. You can call us at +91 9922 451 451 or fill the contact form to book a
+          guided site visit at a time convenient to you. Our team will be happy to host you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>Who is the developer of Evara Virar West?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Evara Virar West is a flagship project by Poonam Developers in association with Neminath
+          Group — both trusted names with decades of experience delivering landmark residential developments across the
+          Mumbai Metropolitan Region.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <p>What kind of after-sales services do you provide?</p>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">We offer comprehensive post-possession support including dedicated customer care, homeowner
+          onboarding, and assistance with documentation. Our relationship with homeowners extends well beyond the point
+          of handover.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section class="contact" id="contact">
+    <p class="ct-eyebrow">Get In Touch</p>
+    <h2 class="ct-title">Speak With<br>Our Sales Team</h2>
+    <p class="ct-sub">Turn your vision into a refined living experience defined by quality and elegance.</p>
+    <div class="ct-info">
+      <div class="ct-item">
+        <div class="ct-lbl">Call Us</div>
+        <div class="ct-val">+91 9922 451 451</div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-lbl">Email</div>
+        <div class="ct-val">sales@evaravirar.in</div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-lbl">Address</div>
+        <div class="ct-val">Global City, Virar West</div>
+      </div>
+    </div>
+    <div class="ct-btns">
+      <a href="tel:+919922451451" class="btn-white">Call Now</a>
+      <a href="mailto:sales@evaravirar.in" class="btn-ghost-white">Email Us</a>
+      <a href="#" class="btn-ghost-white">Download Brochure</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">EVARA</div>
+        <p class="f-desc">Experience elevated living at Evara Virar West — spacious Sky Deck Residences, modern
+          amenities, and prime Global City connectivity in the heart of Virar West, Mumbai.</p>
+        <div class="f-social">
+          <a href="https://www.instagram.com/evaravirar" target="_blank" class="f-soc-link"
+            title="Instagram">&#x2665;</a>
+          <a href="https://www.facebook.com/evaravirar" target="_blank" class="f-soc-link" title="Facebook">f</a>
+          <a href="https://www.youtube.com/@evaravirar" target="_blank" class="f-soc-link" title="YouTube">▶</a>
+        </div>
+      </div>
+      <div>
+        <p class="f-heading">Quick Links</p>
+        <ul class="f-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#floor-plans">Floor Plans</a></li>
+          <li><a href="#walkthrough">Walkthrough</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="f-heading">Contact</p>
+        <ul class="f-links">
+          <li><a href="tel:+919922451451">+91 9922 451 451</a></li>
+          <li><a href="mailto:sales@evaravirar.in">sales@evaravirar.in</a></li>
+          <li><a href="#connectivity">Global City, Opposite McDonald's, Dongarpada, Virar West</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="f-heading">Support</p>
+        <ul class="f-links">
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ RERA + QR CODES ══ -->
+  <div class="rera-strip">
+    <div class="rera-inner">
+      <div class="rera-info">
+        <div class="rera-lbl">MahaRERA Registration</div>
+        <div class="rera-num">P51700056789*</div>
+        <div class="rera-note">* RERA registration number to be updated. For verification, visit
+          maharerait.mahaonline.gov.in and search for Evara Virar West. MahaRERA website:
+          https://maharerait.mahaonline.gov.in</div>
+      </div>
+      <div class="qr-row">
+        <div class="qr-card">
+          <div class="qr-img">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://maharerait.mahaonline.gov.in"
+              alt="RERA QR">
+          </div>
+          <div class="qr-lbl">MahaRERA<br>QR Code</div>
+        </div>
+        <div class="qr-card">
+          <div class="qr-img">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://www.instagram.com/evaravirar/"
+              alt="Instagram QR">
+          </div>
+          <div class="qr-lbl">Instagram<br>Page</div>
+        </div>
+        <div class="qr-card">
+          <div class="qr-img">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://www.facebook.com/evaravirar/"
+              alt="Facebook QR">
+          </div>
+          <div class="qr-lbl">Facebook<br>Page</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DEVELOPER LOGOS ══ -->
+  <div class="dev-strip">
+    <div class="dev-inner">
+      <span class="dev-label">Developed by</span>
+      <img src="images/PN logo.png" alt="Poonam & Neminath Developers"
+        style="height: 72px; width: auto; display: block;">
+    </div>
+  </div>
+
+  <!-- ══ DISCLAIMER ══ -->
+  <div class="disclaimer">
+    <div class="dis-label">Disclaimer</div>
+    <p class="dis-text">This website is for informational purposes only and does not constitute an offer or a contract.
+      The information, images, floor plans, amenities, and specifications shown herein are indicative and subject to
+      change without prior notice at the sole discretion of the developer. Dimensions, areas, and specifications are
+      approximate and may vary from the actual unit. The images shown are for representational purposes only and may
+      include artist impressions and/or reference photographs of lifestyle amenities. The project is registered under
+      MahaRERA; details are subject to approval and sanction by the competent authorities. Pricing is subject to change
+      without notice. Interested buyers are advised to visit the project site, review all relevant documents including
+      the MahaRERA registration details, and consult their legal and financial advisors before making any purchase
+      decision. This website does not constitute a solicitation for sale in any jurisdiction where such solicitation
+      would be unlawful. The developer reserves the right to make changes to the project at any time. Completion
+      timelines are indicative and subject to regulatory approvals and force majeure conditions. ©2024 Evara Virar West.
+      All rights reserved.</p>
+  </div>
+
+  <!-- ══ FOOTER BOTTOM ══ -->
+  <div class="footer-bottom">
+    <span>© 2026 Evara Virar West. All Rights Reserved.</span>
+    <span>Developed by Terado Engineering &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="#">Terms of Service</a></span>
+  </div>
+
+  <!-- ══ SCRIPTS ══ -->
+  <script>
+    /* Sticky nav */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('stuck', window.scrollY > 60);
+    });
+
+    /* Mobile menu */
+    document.getElementById('ham').addEventListener('click', () => {
+      document.getElementById('nav-mobile').classList.toggle('open');
+    });
+    function closeMob() {
+      document.getElementById('nav-mobile').classList.remove('open');
+    }
+
+    /* Scroll reveal */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    /* Amenity tabs */
+    function switchTab(type, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      document.getElementById('pane-podium').classList.toggle('show', type === 'podium');
+      document.getElementById('pane-rooftop').classList.toggle('show', type === 'rooftop');
+    }
+
+    /* FAQ accordion */
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle('open');
+    }
+
+    /* Lightbox */
+    function openLB(card) {
+      const src = card.querySelector('img').src;
+      document.getElementById('lb-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+
+    /* Smooth active nav highlight */
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--maroon)' : '';
+      });
+    });
+  </script>
+</body>
+
+</html>
